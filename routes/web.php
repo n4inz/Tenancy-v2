@@ -30,7 +30,7 @@ Route::get('/', [AuthController::class, 'login_view'])->name('login');
 Route::post('/login-store', [AuthController::class, 'login_store'])->name('login_store');
 
 Route::get('/register', [AuthController::class, 'register_view'] )->name('register');
-Route::post('/register-store', [AuthController::class, 'register_store'] )->name('register_store');
+Route::post('register-store', [AuthController::class, 'register_store'] )->name('register_store');
 
 Route::post('/logout', [AuthController::class, 'logout'] )->name('logout');
 

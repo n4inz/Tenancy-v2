@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Domain;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +33,8 @@ class AuthController extends Controller
             'sub_domain' => ['required'],
         ]);
 
-      $mail =  str_replace(' ','_',$request->full_name);
-      $domain =  str_replace(' ','_',$request->sub_domain);
+        $mail =  str_replace(' ','_',$request->full_name);
+        $domain =  str_replace(' ','_',$request->sub_domain);
 
        $user = User::create([
             'name' => $request->full_name,
@@ -67,8 +68,12 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
            
-            return redirect()->route('dashboard', ['subdomain' => auth()->user()->domain->domain]);
+
+            return redirect('https://'.auth()->user()->domain->domain.'.'.env('DOMAIN').'/dashboard');
+
+            // return redirect()->route('dashboard', ['subdomain' => auth()->user()->domain->domain]);
         }
+        
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
