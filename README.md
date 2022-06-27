@@ -5,6 +5,6 @@ GUIDE
     a. APP_URL : http://Domain-anda<br>
     b. SESSION_DOMAIN: .domain anda<br>
     c. DOMAIN:domain-anda
-3. Jalankan Composer update && install
+3. Jalankan Composer update && install<br>
 4  Jalankan php artisan key:generate
 5. Jalankan php artisan:migrate
