@@ -22,15 +22,15 @@
             <div class="relative shadow-xl w-full mx-auto p-12 h-screen rounded flex items-center justify-center">
 
                 <div class="w-full mx-16 text-center text-green-500 text-md xl:text-3xl">
-                    <div class="mb-5">Welcome {{ auth()->user()->name }} </div>
-                    <div>Your domain is </div>
+                    <div class="mb-5">{{ __('tenancy.dash_1') }} {{ auth()->user()->name }} </div>
+                    <div>{{ __('tenancy.dash_2') }} </div>
                     <div class="font-bold animate-pulse">{{ auth()->user()->domain->domain.'.'.env('DOMAIN') }}</div>
                 
                     <div class="text-sm">
 
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <button type="submit" class="text-gray-100 bg-green-600 px-10 py-2 mt-5 rounded font-semibold hover:bg-green-800 " href="{{ route('register') }}">Logout</button>
+                            <button type="submit" class="text-gray-100 bg-green-600 px-10 py-2 mt-5 rounded font-semibold hover:bg-green-800 " href="{{ route('register') }}">{{ __('tenancy.logout') }}</button>
                         </form>
                     </div>
                 </div>

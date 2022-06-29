@@ -30,16 +30,18 @@ class AuthController extends Controller
     {
         $request->validate([
             'full_name' => ['required'],
+            'email' => ['required'],
             'sub_domain' => ['required'],
+            'password' => ['required'],
         ]);
 
-        $mail =  str_replace(' ','_',$request->full_name);
+        // $mail =  str_replace(' ','_',$request->full_name);
         $domain =  str_replace(' ','_',$request->sub_domain);
 
        $user = User::create([
             'name' => $request->full_name,
-            'email' =>  $mail.'@mail.com',
-            'password' => Hash::make(123456),
+            'email' =>  $request->email,
+            'password' => Hash::make($request->password),
         ]);
 
         Domain::create([
@@ -60,12 +62,12 @@ class AuthController extends Controller
             'email' => ['required'],
             'password' => ['required'],
         ]);
-        $credentials = [
-            'email' => str_replace(' ','_',$request->email).'@mail.com',
-            'password' => 123456
-        ];
+        // $credentials = [
+        //     'email' => str_replace(' ','_',$request->email).'@mail.com',
+        //     'password' => 123456
+        // ];
         
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($data)) {
             $request->session()->regenerate();
            
 
@@ -89,7 +91,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
     
         $request->session()->regenerateToken();
-    
+        session()->put('locale', 'id');
         return redirect(to:env('APP_URL'));
     }
 }

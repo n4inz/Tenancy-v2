@@ -26,20 +26,41 @@
         <section class="mx-10 md:mx-28 lg:mx-72 xl:mx-96 bg-white rounded">
             <div class="relative shadow-xl w-full mx-auto p-12 h-screen rounded flex items-center justify-center">
                 <div class="absolute top-4 right-7">
-                    <a class="text-green-500 font-semibold hover:text-green-600 animate-pulse" href="{{ route('login') }}">Login</a>
+                    <a class="text-green-500 font-semibold hover:text-green-600 animate-pulse" href="{{ route('login') }}">{{ __('tenancy.login') }}</a>
+                </div>
+                <div class="absolute flex flex-row text-center top-16 space-x-10 text-gray-500">
+                    <div>
+                        <div><a href="{{ route('lang', ['lang' => 'id']) }}">Indonesia</a></div>
+                        <div class="@if ( session()->get('locale') != 'id' ) {{ 'hidden' }} @endif  w-14 mx-auto h-[2px] bg-green-600 rounded-xl"></div>
+                    </div>
+                    <div>
+                        <div><a href="{{ route('lang', ['lang' => 'en']) }}">English</a></div>
+                        <div class="@if ( session()->get('locale') != 'en' ) {{ 'hidden' }} @endif w-10 mx-auto h-[2px] bg-green-600 rounded-xl"></div>
+                    </div>
+                    <div>
+                        <div><a href="{{ route('lang', ['lang' => 'es']) }}">Spain</a></div>
+                        <div class="@if ( session()->get('locale') != 'es' ) {{ 'hidden' }} @endif w-8 mx-auto h-[2px] bg-green-600 rounded-xl"></div>
+                    </div>
                 </div>
                 <form class="w-full mx-24" method="post" action="{{ route('register_store') }}">
                     @csrf
                     <div class="mb-6">
-                      <input type="text" id="full_name" name="full_name" value="{{ old('full_name') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Full Name" required>
+                      <input type="text" id="full_name" name="full_name" value="{{ old('full_name') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{{ __('tenancy.full_name') }}" required>
                     </div>
                     <div class="mb-6">
-                      <input type="text" id="sub_domain" name="sub_domain" value="{{ old('sub_domain') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sub Domain" required>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{{ __('tenancy.email') }}" required>
+                    </div>
+                    <div class="mb-6">
+                      <input type="text" id="sub_domain" name="sub_domain" value="{{ old('sub_domain') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{{ __('tenancy.sub_domain') }}" required>
+                    </div>
+                    <div class="mb-6">
+                        <input type="password" id="password" name="password" value="{{ old('password') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{{ __('tenancy.password') }}" required>
                     </div>
                     <div class="w-full flex items-center justify-center mt-4">
-                        <button type="submit" class="text-white px-16 xl:px-36 bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
+                        <button type="submit" class="text-white px-16 xl:px-36 bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('tenancy.register') }}</button>
                     </div>
                 </form>
+
             </div>
         </section>
     </body>

@@ -34,14 +34,16 @@ class TenancyTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->post('/register-store', [
-            'full_name' => 'test',
+            'full_name' => 'TestUser',
+            'email' => 'test@mail.com',
             'sub_domain' => 'test',
+            'password' => 123456,
             '_token' => csrf_token()
         ]);
 
         $response = $this->post('/login-store', [
-            'email' => 'test',
-            'password' => '123456',
+            'email' => 'test@mail.com',
+            'password' => 123456,
             '_token' => csrf_token()
         ]);
 
@@ -60,7 +62,9 @@ class TenancyTest extends TestCase
         $this->withoutExceptionHandling();
         $response = $this->post('/register-store', [
             'full_name' => 'TestUser',
+            'email' => 'test@mail.com',
             'sub_domain' => 'test',
+            'password' => 123456,
             '_token' => csrf_token()
         ]);
 

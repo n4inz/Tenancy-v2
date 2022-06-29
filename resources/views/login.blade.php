@@ -26,16 +26,30 @@
         <section class="mx-10 md:mx-28 lg:mx-72 xl:mx-96 bg-white rounded">
             <div class="relative shadow-xl w-full mx-auto p-12 h-screen rounded flex items-center justify-center">
                 <div class="absolute top-4 right-7">
-                    <a class="text-green-500 font-semibold hover:text-green-600 animate-pulse" href="{{ route('register') }}">Register</a>
+                    <a class="text-green-500 font-semibold hover:text-green-600 animate-pulse" href="{{ route('register') }}">{{ __('tenancy.register') }}</a>
+                </div>
+                <div class="absolute flex flex-row text-center top-16 space-x-10 text-gray-500">
+                    <div>
+                        <div><a href="{{ route('lang', ['lang' => 'id']) }}">Indonesia</a></div>
+                        <div class="@if ( session()->get('locale') != 'id' ) {{ 'hidden' }} @endif  w-14 mx-auto h-[2px] bg-green-600 rounded-xl"></div>
+                    </div>
+                    <div>
+                        <div><a href="{{ route('lang', ['lang' => 'en']) }}">English</a></div>
+                        <div class="@if ( session()->get('locale') != 'en' ) {{ 'hidden' }} @endif w-10 mx-auto h-[2px] bg-green-600 rounded-xl"></div>
+                    </div>
+                    <div>
+                        <div><a href="{{ route('lang', ['lang' => 'es']) }}">Spain</a></div>
+                        <div class="@if ( session()->get('locale') != 'es' ) {{ 'hidden' }} @endif w-8 mx-auto h-[2px] bg-green-600 rounded-xl"></div>
+                    </div>
                 </div>
                 <form class="w-full mx-24 space-y-12" method="post" action="{{ route('login_store') }}">
                     @csrf
-                    <div class="mb-6">
-                        <input name="password" type="hidden" value="123456">
-                        <input name="email" value="{{ old('full_name') }}" type="text" id="domain" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Full Name" required>
+                    <div class="mb-6 space-y-4">
+                        <input name="email" value="{{ old('email') }}" type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{{ __('tenancy.email') }}" required>
+                        <input name="password" value="{{ old('password') }}" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{{ __('tenancy.password') }}" required>
                     </div>
                     <div class="w-full flex items-center justify-center mt-4">
-                        <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-16 xl:px-36 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                        <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-16 xl:px-36 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('tenancy.login') }}</button>
                     </div>
                 </form>
             </div>

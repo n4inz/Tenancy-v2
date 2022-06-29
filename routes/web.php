@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboarController;
-use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +22,6 @@ Route::domain('{subdomain}.tenancy-v2.test')->middleware(['auth','domain'])->gro
 
     Route::get('/dashboard', [DashboarController::class, 'index'])->name('dashboard');
 
-
 });
 
 
@@ -33,6 +32,12 @@ Route::get('/register', [AuthController::class, 'register_view'] )->name('regist
 Route::post('register-store', [AuthController::class, 'register_store'] )->name('register_store');
 
 Route::post('/logout', [AuthController::class, 'logout'] )->name('logout');
+
+
+Route::get('lang/{lang}', function ($locale){
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->name('lang');
 
 
 
